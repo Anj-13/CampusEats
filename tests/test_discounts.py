@@ -1,9 +1,18 @@
 from campuseats.discounts import (
+    apply_discount,
     bulk_discount,
     senior_discount,
     staff_discount,
     student_discount,
 )
+
+
+def test_apply_discount_uses_the_supplied_rate():
+    assert apply_discount(100.0, rate=0.30) == 70.0
+
+
+def test_apply_discount_can_cap_the_saving():
+    assert apply_discount(100.0, rate=0.30, max_saving=5.0) == 95.0
 
 
 def test_student_discount_small_order():
